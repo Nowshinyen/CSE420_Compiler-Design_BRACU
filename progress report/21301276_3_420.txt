@@ -1,0 +1,27 @@
+﻿In the previous lab, we created a compiler's syntax analyzer and produced a symbol table containing the tokens found in a certain C code.
+ However, in this lab, we will look at our code semantically to find any mistakes. We have to perform the tasks of type checking, type conversion, 
+uniqueness checking, array indexing, and function parameter checking in this lab.
+ 
+First of all, for type checking, we check that assignment types match. For example, int x = 7.3;  shows an error because float can’t go into an int. 
+We also make sure array indexes are integers. So, arr[4.5] gives an error. 
+For the modulus % operator, both sides must be integers. So, 8.5 % 3 shows an error. 
+We also check that we can’t divide or use % with zero, like 8 / 0 gives an error. 
+In function calls, we check if the number and types of arguments are correct. For example, func(8, 4.7) gives an error, 
+because the second numbers should be integers. Lastly, we show an error if someone uses a void function in an expression. 
+
+
+Furthermore, for type conversion, if an integer-type variable is allocated a floating-point number, we generate an error or warning message.
+ Example: int x = 3.1416; The error message will be, Float value assigned to integer variable. As well, the output of the LOGICOP and RELOP
+ operations needs to be an integer. The result of relational operators (for example, <, ==) and logical operators (for example, &&, ||) is always 
+an integer. For example, float y = (8 == 8); The error message will be, Logical/relational results should be used as an integer.
+
+
+Moreover, for Uniqueness Checking, we checked if a variable is used without being declared. For example, if we write x = 8; but never declared x, 
+our code now shows an error. We also make sure that the same variable is not declared more than once in the same scope. For example,
+int a;  
+float a;
+Since “a” is declared twice in the same block, this will now result in an error.
+
+
+So far, our code checks all those errors mentioned above. If an error occurred, our code continued to operate as usual. 
+ Therefore, catch all mistakes in the code and compile the provided C code by the end.

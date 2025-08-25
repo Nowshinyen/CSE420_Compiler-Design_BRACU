@@ -1,0 +1,25 @@
+﻿First, we have finished building the main structure of the Abstract Syntax Tree (AST). We created a base class called ASTNode, and then made 
+different node classes for expressions and statements. For expressions, we added VarNode for variables, ConstNode for constants, BinaryOpNode 
+for binary operations like +, -, *, /, UnaryOpNode for operations like -a or !a, AssignNode for assignments, and FuncCallNode for function calls.
+ For statements, we created ExprStmtNode for simple expression lines, BlockNode for blocks of code, IfNode, WhileNode, and ForNode for control flow,
+ ReturnNode for return statements, and DeclNode for variable declarations. We also added the ProgramNode, which is the root of the whole AST and 
+holds everything.
+
+
+Next, we have modified the parser to build the AST while reading the code. For each grammar rule, we now create the correct AST nodes and 
+connect them using set_ast_node() and get_ast_node() functions. For example, if there is an assignment like a = b + c, it creates an AssignNode and 
+a BinaryOpNode and connects them properly in the tree.
+
+
+We have also started working on the three-address code generation part. We added the generate_code() function inside each AST node class. 
+Right now, this function works for arithmetic operations like +, -, *, and /, and also for assignment operations. 
+The generated code uses temporary variables like t0, t1, t2, etc., and writes the output into code.txt. 
+
+
+We have also handled the output files. The log.txt file shows the grammar rules that matched and which parts of the code they matched with. 
+It also includes some information about the AST. The error.txt file stores any errors that happen during parsing or semantic checks. 
+Both files include the total number of lines and the number of errors at the end. 
+
+
+Next, we will work on finishing the rest of the code generation. This includes logical operations like &&, ||, !, relational operations like <, ==, >=, 
+control statements like if, while, and for. We will also test with more sample .c files to make sure everything is working correctly.
