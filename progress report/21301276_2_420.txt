@@ -1,0 +1,14 @@
+﻿We have implemented the symbol_info file, scope_table.h file, and symbol_table.h file till now.
+First of all, for the symbol_info file, all other required private variables, such as symbol type, symbol return type, function parameter vector,
+ & array size are present.  To handle these variables properly, we’ve created basic get() and set() methods. These methods allow us to set the values
+ of these variables when needed and retrieve them when required. The get() and set() methods help us interact with the symbol data in a simple and 
+controlled way. Additionally, for the scope_table.h file, we have generated two public scope_table() methods: the default one, which has no parameters,
+ and the one with parameters. Moreover, we include a private hash_function() method to calculate the hash values after receiving the symbol name as a
+ parameter. It returns a hash index. Again, a symbol is passed as a parameter to the insert_in_scope() method, which puts the symbol into the scope. 
+Furthermore, the look_up_in_scope() method accepts a symbol as an argument and determines whether or not it has already been used or not in the scope table.
+ If the entry was there, we returned it; if not, we returned Null.  Using a symbol as a parameter, the delete_from _scope() method removes the symbol
+ from that scope. Then we completed a print_scope_table() method that helps to print symbol names and types. Following that, we finished the 
+scope_table_destructor() method, which deallocates memory for each symbol. Additionally, for the symbol_table.h file we just finished
+ the enter_scope(), exit_scope(), insert() method to insert symbols to the scope, look_up() method for searching the given symbol in the entire symbol table.
+ We still have a lot of work to do, like finishing the symbol_table.h file completely, among other things. After that, the system will be completely
+operational.

@@ -1,0 +1,35 @@
+First of all, for this assignment, we have to complete 2 files (.l and .y). The main idea of our program is to identify tokens from a C++ source code file, and then save the information in a log file. For now, by Lexical analysis, we generated tokens for the source code and returned the token types for parsing to process.
+
+A few global variables are initialized. For example, lines (to count the line numbers of the source code). and loglist (to save discovered tokens). The provided file contained the regular expressions for letter_ and digit. We filled the regular definitions by defining the regular expressions for integers (int), floating-point numbers (float), identifiers (id), whitespace (ws), and newlines (newline). 
+
+regular expressions :
+
+int 0|([1-9][0-9]*)
+float [-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][-+]?[0-9]+)?
+id [a-zA-Z_][0-9a-zA_Z_]*
+ws \s		 
+newline \n
+letter_	 [A-Za-z_]
+digit	 [0-9]
+
+Now we work on token-matching patterns using regular expressions. The patterns correspond to operators, punctuations, keywords, or identifiers. Discovering a match, the log file is updated with the token type, its lexeme (actual string saved to yytext), and the current line number. 
+
+Moreover, Whitespace (ws) is totally ignored by doing nothing in this case. 
+{ws} {     }
+
+Newlines (\n) increase the line counter by incrementing the global variable “lines”. 
+{newline} {
+     lines++;
+		}
+
+We wrote the identifier block (ID{   }) after the keywords to give precedence to the keywords like if, for, while, than the identifiers (same names used as variables/functions).
+
+For tokens like ADDOP, MULOP where more than 1 operator can be appear and in the regular expression, they are connected by OR sign, we need to keep track of the operator sign too with returning the token type. We did this by creating objects of symbol info class. 
+
+“*”|”/”|”%”    { 
+
+       symbol_info *s = new symbol_info(string)yytext,”MULOP”);
+       yylval = (YYSTYPE)S;
+In this way, we can keep the operator sign too. 
+However, in this way, the lexical analyzer part is almost done. We will work on the parser. 
+
